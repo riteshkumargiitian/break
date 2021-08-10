@@ -11,12 +11,21 @@ jobs:
         matrix :
           os: [ubuntu-latest,macos-latest]
       runs-on : ${{matrix.os}}
-      env :
-          PACKAGE_LOCATION : client
+#       env :
+#            PACKAGE_LOCATION : client   
+     
 #          PACKAGE_LOCATION : server
       steps :
+         
         - name: Check out repo
           uses: actions/checkout@v2
+          env :
+              PACKAGE_LOCATION : client 
+        - name : server
+          env :
+              PACKAGE_LOCATION : client 
+     
+#          PACKAGE_LOCATION : server
         - name : use Node.js${{matrix.node-version}}
           uses: actions/setup-node@v2
           with :
